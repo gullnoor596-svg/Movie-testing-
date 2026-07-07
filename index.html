@@ -1,360 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>𝗚𝗨𝗟𝗟 𝗞𝗛𝗔𝗡 𝗪𝗘𝗕 𝗦𝗘𝗥𝗩𝗘𝗥</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style>
-:root {
-    --bg-color: #111;
-    --text-color: #fff;
-    --card-bg: rgba(255,255,255,0.05);
-    --highlight-color: #00ff88;
-    --search-bg: #222;
-    --download-hd: linear-gradient(90deg,#00ff88,#00cc55);
-    --download-sd: linear-gradient(90deg,#00ccff,#0066ff);
-}
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body{
-    font-family:'Segoe UI',sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
-    overflow-x:hidden;
-    transition: background 0.3s ease;
-    min-height: 100vh;
-    will-change: background;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>GULL KHAN · 3 Col Grid</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* FAST LOAD - MINIMAL & OPTIMIZED */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* DARK THEME (default) */
+    :root {
+      --bg: #0d0f14;
+      --surface: rgba(255,255,255,0.07);
+      --text: #f0f4fa;
+      --accent: #9effb0;
+      --search-bg: #20252e;
+      --card-border: rgba(255,255,255,0.06);
+      --shadow: 0 12px 30px rgba(0,0,0,0.6);
+      --hd-grad: linear-gradient(135deg, #70f5a0, #2ad18b);
+      --sd-grad: linear-gradient(135deg, #62b5ff, #2b7be0);
+      --toggle-bg: #29303b;
+      --toggle-dot: #f7d44a;
+      --info-color: #9effb0;
+      --input-placeholder: rgba(255,255,255,0.25);
+      --body-bg: #0d0f14;
+      --body-text: #f0f4fa;
+      --card-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      --img-bg: #1a1e26;
+    }
+    
+    /* LIGHT THEME */
+    body.light-theme {
+      --bg: #f2f5fa;
+      --surface: rgba(0,0,0,0.06);
+      --text: #1a1f2c;
+      --accent: #db3d7c;
+      --search-bg: #ffffff;
+      --card-border: rgba(0,0,0,0.10);
+      --shadow: 0 12px 30px rgba(0,0,0,0.12);
+      --hd-grad: linear-gradient(135deg, #d64b8a, #b52b6e);
+      --sd-grad: linear-gradient(135deg, #3d8bff, #1d5ec9);
+      --toggle-bg: #d0d6e2;
+      --toggle-dot: #f1c40f;
+      --info-color: #db3d7c;
+      --input-placeholder: rgba(0,0,0,0.35);
+      --body-bg: #f2f5fa;
+      --body-text: #1a1f2c;
+      --card-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      --img-bg: #d5dae5;
+    }
+    
+    body {
+      background: var(--body-bg);
+      color: var(--body-text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      transition: background 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      padding: 0 0 30px;
+    }
+    
+    /* TOP BAR */
+    .top-icons-bar {
+      background: var(--body-bg);
+      padding: 16px 20px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+    
+    .info-btn, .night-toggle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--toggle-bg);
+      border: 1px solid var(--card-border);
+      color: var(--info-color);
+      font-size: 26px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+      touch-action: manipulation;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .night-toggle i { 
+      color: var(--toggle-dot); 
+      font-size: 26px; 
+      transition: color 0.3s ease;
+    }
+    .night-toggle .fa-sun { display: inline-block; }
+    .night-toggle .fa-moon { display: none; }
+    body.light-theme .night-toggle .fa-sun { display: none; }
+    body.light-theme .night-toggle .fa-moon { display: inline-block; }
+    .info-btn:hover, .night-toggle:hover { transform: scale(1.05); }
+    .info-btn:active, .night-toggle:active { transform: scale(0.92); }
 
-/* top bar */
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 25px;
-    position: relative;
-    z-index: 10;
-}
-.info-btn {
-    font-size: 40px;
-    background: none;
-    border: none;
-    color: var(--highlight-color);
-    cursor: pointer;
-    transition: transform 0.2s;
-    padding: 0 10px;
-}
-.info-btn:hover { transform: scale(1.1); }
+    /* TITLE */
+    .title-wrapper { 
+      text-align: center; 
+      margin: 0 0 2px; 
+      padding: 0 16px;
+      background: transparent;
+    }
+    .main-title {
+      font-size: 60px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(145deg, #ff5f6d, #ffb36b, #8be8ff, #d97aff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientSlide 6s ease-in-out infinite;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.2));
+    }
+    @keyframes gradientSlide {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .sub-title {
+      font-size: 14px;
+      letter-spacing: 6px;
+      opacity: 0.5;
+      margin-top: 2px;
+      color: var(--text);
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+    .sub-title i { 
+      margin: 0 8px; 
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    body.light-theme .sub-title { opacity: 0.6; }
 
-/* night toggle - optimized */
-.night-toggle {
-    position: relative;
-    width: 75px;
-    height: 40px;
-    background: #333;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background 0.3s;
-    border: 2px solid #555;
-    flex-shrink: 0;
-}
-.night-toggle .toggle-ball {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #f1c40f;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    box-shadow: 0 0 15px #f39c12;
-}
-.night-toggle.active .toggle-ball { left: 38px; background: #f0e68c; }
-.night-toggle .toggle-ball .sun-icon { display: inline; }
-.night-toggle .toggle-ball .moon-icon { display: none; }
-.night-toggle.active .toggle-ball .sun-icon { display: none; }
-.night-toggle.active .toggle-ball .moon-icon { display: inline; }
+    /* SEARCH */
+    .search-container {
+      max-width: 640px;
+      margin: 8px auto 14px;
+      padding: 0 20px;
+      background: transparent;
+    }
+    .search-container input {
+      width: 100%;
+      padding: 14px 22px;
+      border-radius: 60px;
+      border: 2px solid var(--card-border);
+      background: var(--search-bg);
+      color: var(--text);
+      font-size: 18px;
+      outline: none;
+      transition: 0.3s ease;
+      font-weight: 400;
+    }
+    .search-container input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(0,255,170,0.08);
+    }
+    .search-container input::placeholder { 
+      color: var(--input-placeholder);
+      transition: color 0.3s ease;
+    }
 
-/* title - optimized */
-.title-wrapper { text-align: center; margin: 5px 0 5px 0; padding: 5px 0; }
-.main-title {
-    font-size: 72px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #ff6b6b);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 4s ease-in-out infinite;
-    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
-    display: inline-block;
-    padding: 0 15px;
-    position: relative;
-}
-.main-title::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #ff6b6b, #48dbfb, transparent);
-    border-radius: 3px;
-    animation: linePulse 2s ease-in-out infinite;
-}
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-@keyframes linePulse {
-    0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleX(0.8); }
-    50% { opacity: 1; transform: translateX(-50%) scaleX(1.2); }
-}
-.sub-title {
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 10px;
-    color: var(--text-color);
-    opacity: 0.6;
-    margin-top: 5px;
-    text-transform: uppercase;
-    transition: opacity 0.3s;
-}
-.sub-title i { margin: 0 8px; color: var(--highlight-color); font-size: 16px; }
+    /* ===== GRID - FULL WIDTH & TALL CARDS ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      padding: 18px 36px 50px;
+      max-width: 1700px;
+      margin: 0 auto;
+      background: transparent;
+    }
+    
+    /* ===== MOVIE CARD - EVEN TALLER & BOLDER ===== */
+    .movie {
+      background: var(--surface);
+      border-radius: 30px;
+      overflow: hidden;
+      backdrop-filter: blur(2px);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s, background 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 660px;
+      transform: translateY(8px);
+      opacity: 0;
+      animation: fadeUp 0.35s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+    }
+    .movie:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 768px) {
-    .main-title { font-size: 38px; letter-spacing: 2px; }
-    .sub-title { font-size: 12px; letter-spacing: 5px; }
-    .top-bar { padding: 10px 15px; }
-    .info-btn { font-size: 30px; }
-    .night-toggle { width: 60px; height: 34px; }
-    .night-toggle .toggle-ball { width: 26px; height: 26px; font-size: 14px; top: 2px; left: 2px; }
-    .night-toggle.active .toggle-ball { left: 30px; }
-}
+    /* ===== IMAGE - BIGGER HEIGHT ===== */
+    .movie img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      background: var(--img-bg);
+      display: block;
+      transition: background 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    /* ===== TITLE - BIGGER FONT ===== */
+    .movie h3 {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 20px 14px 8px;
+      text-align: center;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      flex: 0 0 auto;
+      line-height: 1.2;
+      transition: color 0.3s ease;
+      letter-spacing: 0.5px;
+      padding: 0 6px;
+    }
+    
+    /* ===== DOWNLOAD BUTTONS - BIGGER & BEEFIER ===== */
+    .download {
+      display: block;
+      margin: 6px auto 18px;
+      padding: 18px 30px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 22px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      max-width: 90%;
+      border: none;
+      cursor: pointer;
+      flex: 0 0 auto;
+      letter-spacing: 0.8px;
+    }
+    .download.hd { background: var(--hd-grad); }
+    .download.sd { background: var(--sd-grad); }
+    .download:hover { transform: scale(1.05); box-shadow: 0 10px 28px rgba(0,0,0,0.45); }
+    .download:active { transform: scale(0.94); }
 
-/* search - optimized */
-.search-container {
-    text-align: center;
-    margin: 12px auto;
-    padding: 0 20px;
-    max-width: 700px;
-}
-.search-container input{
-    width: 100%;
-    padding: 16px 22px;
-    font-size: 20px;
-    border-radius: 50px;
-    border: 2px solid transparent;
-    background: var(--search-bg);
-    color: var(--text-color);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-}
-.search-container input:focus {
-    border-color: var(--highlight-color);
-    box-shadow: 0 0 15px rgba(0,255,136,0.12);
-}
-.search-container input::placeholder { color: rgba(255,255,255,0.35); }
+    /* NO RESULTS */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+      opacity: 0.5;
+      font-size: 28px;
+      background: transparent;
+      color: var(--text);
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+    body.light-theme .no-results { opacity: 0.6; }
+    .no-results i { 
+      display: block; 
+      font-size: 56px; 
+      margin-bottom: 20px; 
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
 
-/* grid - optimized for speed */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:20px;
-    padding:15px 25px;
-    max-width: 1500px;
-    margin: 0 auto;
-}
-.movie{
-    background: var(--card-bg);
-    border-radius:14px;
-    overflow:hidden;
-    text-align:center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    border: 1px solid rgba(255,255,255,0.04);
-    will-change: transform;
-}
-.movie:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.35);
-}
-.movie img{
-    width:100%;
-    height:500px;
-    object-fit:cover;
-    display:block;
-    background: #1a1a2e;
-}
-.movie h3 {
-    font-size:30px;
-    font-weight:700;
-    color: var(--highlight-color);
-    margin:12px 8px 6px 8px;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    line-height:1.2;
-    min-height:50px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-.download {
-    display: block;
-    margin: 5px auto 12px auto;
-    padding: 10px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 30px;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
-    transition: transform 0.15s, box-shadow 0.2s;
-    max-width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    border: none;
-}
-.download.hd { background: var(--download-hd); }
-.download.sd { background: var(--download-sd); }
-.download:hover { transform: scale(1.04); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-.download:active { transform: scale(0.95); }
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--body-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 12px; }
 
-.movie.active-touch::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(120deg,rgba(255,255,255,0.12),transparent);
-    animation:slide 0.4s;
-    border-radius:14px;
-    pointer-events: none;
-}
-@keyframes slide{from{left:-100%}to{left:100%}}
+    /* ===== RESPONSIVE - EVEN BIGGER ON LARGE SCREENS ===== */
+    @media (min-width: 1700px) {
+      .grid { gap: 44px; padding: 22px 56px 60px; max-width: 2100px; }
+      .movie { min-height: 780px; }
+      .movie img { height: 700px; }
+      .movie h3 { font-size: 42px; min-height: 90px; }
+      .download { font-size: 28px; padding: 22px 40px; }
+    }
 
-.fadeIn{
-    opacity:0;
-    transform:translateY(20px);
-    animation:fadeUp 0.4s cubic-bezier(0.23,1,0.32,1) forwards;
-}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+    @media (max-width: 1500px) {
+      .grid { gap: 32px; padding: 16px 32px 48px; }
+      .movie { min-height: 600px; }
+      .movie img { height: 540px; }
+      .movie h3 { font-size: 28px; min-height: 68px; }
+      .download { font-size: 20px; padding: 16px 24px; }
+    }
 
-.no-results {
-    text-align: center;
-    padding: 50px 20px;
-    font-size: 24px;
-    color: var(--text-color);
-    opacity: 0.5;
-    grid-column: 1 / -1;
-}
-.no-results i { font-size: 40px; display: block; margin-bottom: 15px; color: var(--highlight-color); }
+    @media (max-width: 1300px) {
+      .grid { gap: 28px; padding: 14px 28px 42px; }
+      .movie { min-height: 540px; }
+      .movie img { height: 480px; }
+      .movie h3 { font-size: 24px; min-height: 60px; }
+      .download { font-size: 18px; padding: 14px 20px; }
+    }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-color); }
-::-webkit-scrollbar-thumb { background: var(--highlight-color); border-radius: 10px; }
+    @media (max-width: 1100px) {
+      .grid { gap: 24px; padding: 12px 24px 38px; }
+      .movie { min-height: 480px; }
+      .movie img { height: 420px; }
+      .movie h3 { font-size: 22px; min-height: 54px; }
+      .download { font-size: 16px; padding: 12px 18px; }
+    }
 
-@media (max-width: 600px) {
-    .grid { padding: 12px; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-    .movie img { height: 220px; }
-    .movie h3 { font-size: 16px; min-height: 36px; margin: 8px 4px 4px 4px; }
-    .download { font-size: 13px; padding: 7px 12px; }
-    .search-container input { font-size: 16px; padding: 12px 18px; }
-    .main-title { font-size: 32px; }
-}
-</style>
+    @media (max-width: 900px) {
+      .grid { gap: 20px; padding: 10px 20px 34px; }
+      .movie { min-height: 420px; }
+      .movie img { height: 360px; }
+      .movie h3 { font-size: 20px; min-height: 48px; }
+      .download { font-size: 15px; padding: 10px 16px; }
+    }
+
+    @media (max-width: 768px) {
+      .main-title { font-size: 44px; }
+      .grid { gap: 18px; padding: 8px 16px 28px; }
+      .movie { min-height: 360px; border-radius: 24px; }
+      .movie img { height: 300px; }
+      .movie h3 { font-size: 17px; min-height: 42px; margin: 14px 8px 4px; }
+      .download { font-size: 14px; padding: 10px 14px; margin: 4px auto 12px; }
+      .info-btn, .night-toggle { width: 44px; height: 44px; font-size: 20px; }
+      .night-toggle i { font-size: 20px; }
+      .top-icons-bar { padding: 12px 14px 4px; }
+    }
+
+    @media (max-width: 480px) {
+      .main-title { font-size: 32px; }
+      .grid { gap: 14px; padding: 6px 12px 22px; }
+      .movie { min-height: 280px; border-radius: 20px; }
+      .movie img { height: 220px; }
+      .movie h3 { font-size: 14px; min-height: 34px; margin: 10px 4px 2px; }
+      .download { font-size: 11px; padding: 6px 10px; margin: 3px auto 10px; }
+      .search-container input { font-size: 15px; padding: 10px 16px; }
+      .info-btn, .night-toggle { width: 38px; height: 38px; font-size: 16px; }
+      .night-toggle i { font-size: 16px; }
+      .top-icons-bar { padding: 8px 10px 4px; }
+    }
+
+    @media (max-width: 360px) {
+      .grid { gap: 10px; padding: 4px 6px 16px; }
+      .movie { min-height: 220px; border-radius: 16px; }
+      .movie img { height: 170px; }
+      .movie h3 { font-size: 11px; min-height: 28px; }
+      .download { font-size: 9px; padding: 4px 6px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-    <div class="left">
-        <button class="info-btn" id="infoBtn" aria-label="Info"><i class="fas fa-info-circle"></i></button>
-    </div>
-    <div class="right">
-        <div class="night-toggle" id="nightToggle" role="button" tabindex="0">
-            <div class="toggle-ball">
-                <span class="sun-icon"><i class="fas fa-sun"></i></span>
-                <span class="moon-icon"><i class="fas fa-moon"></i></span>
-            </div>
-        </div>
-    </div>
+<div class="top-icons-bar">
+  <button class="info-btn" id="infoBtn"><i class="fas fa-circle-info"></i></button>
+  <div class="night-toggle" id="themeToggle" role="button" tabindex="0">
+    <i class="fas fa-sun"></i>
+    <i class="fas fa-moon"></i>
+  </div>
 </div>
 
-<!-- TITLE -->
 <div class="title-wrapper">
-    <div class="main-title">Gull Khan Web</div>
-    <div class="sub-title"><i class="fas fa-film"></i> Movies · Server · HD <i class="fas fa-film"></i></div>
+  <div class="main-title">GULL KHAN</div>
+  <div class="sub-title"><i class="fas fa-film"></i> STREAM · SERVER <i class="fas fa-film"></i></div>
 </div>
 
-<!-- SEARCH -->
 <div class="search-container">
-    <input type="text" id="searchInput" placeholder="🔍 Search movies..." autocomplete="off">
+  <input type="text" id="searchInput" placeholder="🔍  search movies..." autocomplete="off">
 </div>
 
-<!-- GRID -->
 <div class="grid" id="movieGrid"></div>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop preload="none">
-    <source src="https://github.com/gullnoor596-svg/Background-music/raw/refs/heads/main/LET%20THE%20WORLD%20BURN.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-(function() {
-    'use strict';
-
-    // DOM refs
+  (function() {
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
     const infoBtn = document.getElementById('infoBtn');
-    const nightToggle = document.getElementById('nightToggle');
     const grid = document.getElementById('movieGrid');
     const searchInput = document.getElementById('searchInput');
-    const bgMusic = document.getElementById('bgMusic');
 
-    // INFO
-    infoBtn.addEventListener('click', () => window.open('https://gullnoor596-svg.github.io/Helpus/', '_blank'));
+    let currentTheme = localStorage.getItem('gull-theme') || 'dark';
+    if (currentTheme === 'light') document.body.classList.add('light-theme');
 
-    // NIGHT MODE
-    let nightMode = localStorage.getItem('nightMode') !== 'false';
-    const root = document.documentElement;
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+      localStorage.setItem('gull-theme', theme);
+    });
 
-    function applyMode(night) {
-        if (!night) {
-            root.style.setProperty('--bg-color', '#f0f0f5');
-            root.style.setProperty('--text-color', '#1a1a2e');
-            root.style.setProperty('--card-bg', 'rgba(255,255,255,0.7)');
-            root.style.setProperty('--highlight-color', '#e84393');
-            root.style.setProperty('--search-bg', '#e8e8ee');
-            nightToggle.classList.remove('active');
-        } else {
-            root.style.setProperty('--bg-color', '#111');
-            root.style.setProperty('--text-color', '#fff');
-            root.style.setProperty('--card-bg', 'rgba(255,255,255,0.05)');
-            root.style.setProperty('--highlight-color', '#00ff88');
-            root.style.setProperty('--search-bg', '#222');
-            nightToggle.classList.add('active');
-        }
-        localStorage.setItem('nightMode', String(night));
-    }
-    applyMode(nightMode);
-    nightToggle.addEventListener('click', (e) => { e.stopPropagation(); nightMode = !nightMode; applyMode(nightMode); });
-    nightToggle.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); nightMode = !nightMode; applyMode(nightMode); } });
+    infoBtn.addEventListener('click', () => {
+      window.open('https://gullnoor596-svg.github.io/Helpus/', '_blank');
+    });
 
-    // MOVIE DATA - Your format, optimized
-    const movies = [
-    {name:"Prince of Persia",img:"https://www.mp4moviez.care/cover/prince-of-persia:-the-sands-of-time-(2010)-hindi-dubbed-movie.jpg", link1:"https://fast-dl.org/dl/e29732", link2:"https://new6.filesdl.top/gfile.php?id=aHR0cHM6Ly9waG90b3MuYXBwLmdvby5nbC9vZWNhZkprWUN1dEhGdEUxNg=="},
+    // ===== MOVIES DATA =====
+    const baseMovies = [
+{name:"Prince of Persia",img:"https://www.mp4moviez.care/cover/prince-of-persia:-the-sands-of-time-(2010)-hindi-dubbed-movie.jpg", link1:"https://fast-dl.org/dl/e29732", link2:"https://new6.filesdl.top/gfile.php?id=aHR0cHM6Ly9waG90b3MuYXBwLmdvby5nbC9vZWNhZkprWUN1dEhGdEUxNg=="},
     {name:"V for Vendetta", img:"https://imgshare.info/images/2025/04/26/V.for.Vendetta.2005..jpg", link1:"https://pixeldrain.dev/u/XJcPnuBR", link2:"https://pixeldrain.dev/u/No7RJYFa"},
     {name:"The Green Mile", img:"https://mp4moviez.football/cover/the-green-mile-(1999)-hindi-dubbed-movie.jpg", link1:"https://pixeldrain.dev/u/zHthfKXo", link2:"https://drive.google.com/file/d/1s5L4J-_oShZZGP0lhTgIz-mKJT23K0p0/view?pli=1"},
     {name:"The Spiderwick Chronicles", img:"https://images.justwatch.com/poster/183682366/s718/the-spiderwick-chronicles.jpg", link1:"https://mp4moviez.football/dl.php?id=22291&q=720&jio=yes&title=The-Spiderwick-Chronicles-(2008)-Hindi-Dubbed-BluRay", link2:"https://111.90.159.132/family/the-spiderwick-chronicles-12122023/"},
@@ -440,7 +485,6 @@ body{
     {name:"Peaky Blinders", img:"https://image.tmdb.org/t/p/w500/wMUNrwZmGKgFrclABHrRZD1jF49.jpg", link1:"https://gullnoor596-svg.github.io/Peaky-Blinders/", link2:" "},
     {name:"The Witcher", img:"https://image.tmdb.org/t/p/w400/AoGsDM02UVt0npBA8OvpDcZbaMi.jpg", link1:"https://gullnoor596-svg.github.io/The-Witcher/", link2:" "},
     {name:"Money Heist",img:"https://m.media-amazon.com/images/M/MV5BZDdkN2VjNWUtMmFiYS00NzgwLTkwZTItNTBiMjFlNGFiNTdhXkEyXkFqcGc@._V1_.jpg", link1:"https://gullnoor596-svg.github.io/Money-Heist-season-/", link2:""},
-    {name:"Money Heist Berlin",img:"https://image.tmdb.org/t/p/w500/qggpZOGHps82F80lXPxtvtf9HnL.jpg", link1:"https://gullnoor596-svg.github.io/Money-Heist-Berlin-/", link2:""},
     {name:"Reacher", img:"https://image.tmdb.org/t/p/w500/uF5v0SPpKzC9dWXIspA1x2zEDKO.jpg", link1:"https://gullnoor596-svg.github.io/Reacher/", link2:" "},
     {name:"The Croods", img:"https://myimg.click/images/2021/09/12/27zvjVOtOi5ped1HSlJKNsKXkFH.jpg", link1:"https://pixeldrain.dev/u/QFsww44z", link2:"https://pixeldrain.dev/u/oeJPyhxp"},
     {name:"The Croods 2", img:"https://imgshare.info/images/2025/10/12/The.Croods.A.New.Age.2020..jpg", link1:"https://pixeldrain.com/u/Q9XMwTUh", link2:"https://a-delivery28.mxcontent.net/d/q1mm7g8wtxrj4m/plpwcfw0gk2rbtdakvu?ab=0&r=https%3A%2F%2Fm1xdrop.click%2Ff%2Fq1mm7g8wtxrj4m"},
@@ -480,132 +524,94 @@ body{
     {name:"Ice Age (2016)",img:"https://imgshare.info/images/2026/02/11/Ice-Age-5-Collision-Course2016.jpg", link1:"https://pixeldrain.dev/u/a9VAQqbq", link2:"https://hub.diskcdn.buzz/260d9e81d8d19b4ee324c88a801e30ab?token=1777969014116"},
     {name:"Ice Age (2022)",img:"https://i0.wp.com/123mkv.stream/wp-content/uploads/2022/01/The-Ice-Age-Adventures-of-Buck-Wild-Full-Movie-Download-Free-2022-Dual-Audio-HD.jpg?w=300&ssl=1", link1:"https://www.mp4moviez.care/dl.php?id=17911&q=720&jio=yes&title=The-Ice-Age-Adventures-of-Buck-Wild-(2022)-English-(With-Hindi-Subtitles)-WEBRip", link2:"https://www.pagalmovies.courses/download/9737/server_1"},
        
-     
-];
+        
+   ];
 
-    // Placeholders - pre-allocated for speed
-    for(let i = 6; i <= 100; i++) {
-        movies.push({ name: "Hollywood " + i, img: `https://via.placeholder.com/300x450/1a1e24/6af?text=Movie+${i}`, link1: "#", link2: "#" });
+    // Add 95 placeholder movies
+    for (let i = 6; i <= 100; i++) {
+      baseMovies.push({
+        name: "Hollywood " + i,
+        img: "https://picsum.photos/seed/" + i + "/800/1000",
+        link1: "#",
+        link2: "#"
+      });
     }
 
-    // RENDER ENGINE - FASTEST
-    let currentMovies = movies;
-    let renderIndex = 0;
-    const BATCH = 20;
-    let isLoading = false;
-    let allLoaded = false;
-    let searchQuery = '';
+    let movies = baseMovies.slice();
+    let currentIndex = 0;
+    const BATCH = 21;
+    let searchTimer = null;
 
-    function createMovieElement(m) {
-        const box = document.createElement('div');
-        box.className = 'movie fadeIn';
-        box.innerHTML = `
-            <img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x450/1a1e24/888?text=No+Image'">
-            <h3>${m.name}</h3>
-            <a class="download hd" href="${m.link1}" target="_blank" rel="noopener">Download HD</a>
-            <a class="download sd" href="${m.link2}" target="_blank" rel="noopener">Download SD</a>
-        `;
-        // Touch effect
-        box.addEventListener('touchstart', function(e) {
-            if (!e.target.classList.contains('download')) this.classList.add('active-touch');
-        }, { passive: true });
-        box.addEventListener('touchend', function() {
-            setTimeout(() => this.classList.remove('active-touch'), 250);
-        }, { passive: true });
-        return box;
+    function createCard(movie) {
+      const div = document.createElement('div');
+      div.className = 'movie';
+      div.innerHTML = `
+        <img src="${movie.img}" alt="${movie.name}" loading="lazy" onerror="this.src='https://picsum.photos/seed/err/800/1000'">
+        <h3>${movie.name}</h3>
+        <a class="download hd" href="${movie.link1}" target="_blank" rel="noopener">Download HD</a>
+        <a class="download sd" href="${movie.link2}" target="_blank" rel="noopener">Download SD</a>
+      `;
+      return div;
     }
 
-    function renderBatch() {
-        if (isLoading || allLoaded) return;
-        if (renderIndex >= currentMovies.length) { allLoaded = true; return; }
-
-        isLoading = true;
-        const fragment = document.createDocumentFragment();
-        const slice = currentMovies.slice(renderIndex, renderIndex + BATCH);
-        for (let i = 0; i < slice.length; i++) {
-            fragment.appendChild(createMovieElement(slice[i]));
-        }
-        grid.appendChild(fragment);
-        renderIndex += slice.length;
-        isLoading = false;
-        if (renderIndex >= currentMovies.length) allLoaded = true;
+    function loadBatch() {
+      const batch = movies.slice(currentIndex, currentIndex + BATCH);
+      if (!batch.length) return;
+      const frag = document.createDocumentFragment();
+      for (let m of batch) frag.appendChild(createCard(m));
+      grid.appendChild(frag);
+      currentIndex += batch.length;
     }
 
-    function resetRender(filtered) {
-        grid.innerHTML = '';
-        currentMovies = filtered || movies;
-        renderIndex = 0;
-        allLoaded = false;
-        isLoading = false;
-        renderBatch();
-        // Show no results if empty
-        if (currentMovies.length === 0) {
-            const msg = document.createElement('div');
-            msg.className = 'no-results';
-            msg.innerHTML = '<i class="fas fa-film"></i> No movies found<br><span style="font-size:18px;opacity:0.7;">Try a different search</span>';
-            grid.appendChild(msg);
-        }
-    }
+    // Initial load
+    loadBatch();
 
-    // Initial render
-    resetRender();
-
-    // INFINITE SCROLL - optimized
+    // Scroll listener with throttling
     let scrollTimer;
     window.addEventListener('scroll', () => {
-        if (scrollTimer) return;
-        scrollTimer = setTimeout(() => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 350) {
-                if (!allLoaded && !isLoading) renderBatch();
-            }
-            scrollTimer = null;
-        }, 80);
-    }, { passive: true });
-
-    // SEARCH - optimized with debounce
-    let searchTimer;
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => {
-            const q = e.target.value.toLowerCase().trim();
-            if (q === '') {
-                resetRender(movies);
-            } else {
-                const filtered = movies.filter(m => m.name.toLowerCase().includes(q));
-                resetRender(filtered);
-            }
-        }, 200);
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const winH = window.innerHeight;
+        const docH = document.documentElement.scrollHeight;
+        if (winH + scrollY >= docH - 400) {
+          if (currentIndex < movies.length) {
+            loadBatch();
+          }
+        }
+      }, 150);
     });
 
-    // MUSIC - instant on any interaction
-    let musicStarted = false;
-    function startMusic() {
-        if (musicStarted) return;
-        bgMusic.play().catch(() => {});
-        musicStarted = true;
-    }
-    document.addEventListener('click', startMusic, { once: true });
-    document.addEventListener('touchstart', startMusic, { once: true, passive: true });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') startMusic(); }, { once: true });
+    // Search with debounce
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        const q = this.value.trim().toLowerCase();
+        grid.innerHTML = '';
+        currentIndex = 0;
+        let filtered = [];
+        if (q === '') {
+          filtered = baseMovies.slice();
+        } else {
+          for (let m of baseMovies) {
+            if (m.name.toLowerCase().includes(q)) filtered.push(m);
+          }
+        }
+        if (!filtered.length) {
+          const empty = document.createElement('div');
+          empty.className = 'no-results';
+          empty.innerHTML = '<i class="fas fa-film"></i> No movies found<br><span style="font-size:22px;opacity:0.7;">try another keyword</span>';
+          grid.appendChild(empty);
+          movies = [];
+        } else {
+          movies = filtered;
+          loadBatch();
+        }
+      }, 200);
+    });
 
-    // Image error fallback
-    document.addEventListener('error', (e) => {
-        if (e.target.tagName === 'IMG') e.target.src = 'https://via.placeholder.com/300x450/1a1e24/888?text=No+Image';
-    }, true);
-
-    // Responsive grid
-    function adjustGrid() {
-        const w = window.innerWidth;
-        if (w < 400) grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(130px, 1fr))';
-        else if (w < 600) grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
-        else if (w < 900) grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
-        else grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(260px, 1fr))';
-    }
-    adjustGrid();
-    window.addEventListener('resize', adjustGrid);
-
-    console.log('⚡ GULL KHAN WEB — Speed optimized!');
-})();
+    console.log('✅ GULL KHAN · Even BIGGER! (min-height: 660px, img: 600px)');
+  })();
 </script>
 </body>
 </html>
